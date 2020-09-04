@@ -1,27 +1,28 @@
-name: Rust
+name: On Push
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  on-push:
-
+  lint-test-build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Lint
-      run: cargo clippy
-    - name: Run tests
-      run: cargo test
-    - name: Build
-      run: cargo build
+      - uses: actions/checkout@v2
+      - name: Setup
+        run: rustup component add clippy
+      - name: Lint
+        run: cargo clippy
+      - name: Run tests
+        run: cargo test
+      - name: Build
+        run: cargo build
