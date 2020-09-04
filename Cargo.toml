@@ -1,0 +1,15 @@
+[package]
+name = "consulator"
+version = "0.1.0"
+authors = ["Josh Lindsey <joshua.s.lindsey@gmail.com>"]
+edition = "2018"
+homepage = "https://github.com/jlindsey/consulator"
+license = "ISC"
+
+[dependencies]
+serde = "1.0"
+serde_json = "1.0"
+serde_derive = "1.0"
+base64 = "0.12"
+reqwest = { version = "0.10", features = ["json"] }
+tokio = { version = "0.2", features = ["macros"] }
