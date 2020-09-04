@@ -18,6 +18,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/cache@v2.1.1
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: v1-${{ runner.os }}-debug-${{ hashFiles('Cargo.lock') }}
+          restore-keys: |
+            v1-${{ runner.os }}-debug
+            v1-${{ runner.os }}
+            v1
       - name: Setup
         run: rustup component add clippy
       - name: Lint
@@ -26,3 +37,7 @@ jobs:
         run: cargo test
       - name: Build
         run: cargo build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: consulator-${{ runner.os }}
+          path: target/debug/consulator
