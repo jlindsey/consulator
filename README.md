@@ -12,4 +12,3 @@ will not be actively maintained.
 
 [1]: https://github.com/hashicorp/consul-template
 [2]: https://www.nomadproject.io/docs/job-specification/template.html
-

@@ -4,6 +4,27 @@ use serde::{
     de::{self, Visitor},
     ser::Serializer,
 };
+use serde_derive::{Deserialize, Serialize};
+
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "PascalCase")]
+pub struct KV {
+    pub key: String,
+    pub value: KVValue,
+}
+
+impl KV {
+    pub fn new<K, V>(key: K, value: V) -> Self
+    where
+        K: Into<String>,
+        V: Into<KVValue>,
+    {
+        KV {
+            key: key.into(),
+            value: value.into(),
+        }
+    }
+}
 
 struct KVVisitor;
 
@@ -33,7 +54,16 @@ impl<'de> Visitor<'de> for KVVisitor {
 
 /// Newtype wrapper to automatically handle encoding/decoding base64 from the KV API
 #[derive(Debug)]
-pub struct KVValue(String);
+pub struct KVValue(pub String);
+
+impl<T> From<T> for KVValue
+where
+    T: Into<String>,
+{
+    fn from(v: T) -> Self {
+        KVValue(v.into())
+    }
+}
 
 impl Deref for KVValue {
     type Target = String;
