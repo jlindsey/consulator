@@ -37,13 +37,6 @@ jobs:
           key: v2-${{ runner.os }}-release-${{ hashFiles('Cargo.lock') }}
           restore-keys: |
             v2-${{ runner.os }}-release
-            v2-${{ runner.os }}
-      - name: Setup
-        run: rustup component add clippy
-      - name: Lint
-        run: cargo clippy
-      - name: Run tests
-        run: cargo test
       - name: Build
         run: cargo build --release
       - uses: actions/upload-artifact@v2

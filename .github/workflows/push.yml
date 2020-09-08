@@ -27,7 +27,6 @@ jobs:
           key: v2-${{ runner.os }}-debug-${{ hashFiles('Cargo.lock') }}
           restore-keys: |
             v2-${{ runner.os }}-debug
-            v2-${{ runner.os }}
       - name: Setup
         run: rustup component add clippy
       - name: Lint
