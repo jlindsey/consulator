@@ -34,10 +34,10 @@ jobs:
             ~/.cargo/registry
             ~/.cargo/git
             target
-          key: v1-${{ matrix.os }}-release-${{ hashFiles('Cargo.lock') }}
+          key: v1-${{ runner.os }}-release-${{ hashFiles('Cargo.lock') }}
           restore-keys: |
-            v1-${{ matrix.os }}-release
-            v1-${{ matrix.os }}
+            v1-${{ runner.os }}-release
+            v1-${{ runner.os }}
             v1
       - name: Setup
         run: rustup component add clippy
@@ -49,7 +49,7 @@ jobs:
         run: cargo build --release
       - uses: actions/upload-artifact@v2
         with:
-          name: consulator-${{ matrix.os }}
+          name: consulator-${{ runner.os }}
           path: target/release/consulator
       - uses: actions/upload-release-asset@v1
         env:
@@ -57,5 +57,5 @@ jobs:
         with:
           upload_url: ${{ needs.create-release.outputs.upload_url }}
           asset_path: target/release/consulator
-          asset_name: consulator-${{ matrix.os }}
+          asset_name: consulator-${{ runner.os }}
           asset_content_type: application/octet-stream
