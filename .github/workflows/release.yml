@@ -37,10 +37,9 @@ jobs:
           path: |
             ~/.cargo/registry
             ~/.cargo/git
-            target
-          key: v2-${{ runner.os }}-release-${{ hashFiles('Cargo.lock') }}
+          key: v3-${{ runner.os }}-release-${{ hashFiles('Cargo.lock') }}
           restore-keys: |
-            v2-${{ runner.os }}-release
+            v3-${{ runner.os }}-release
       - name: Build
         run: cargo build --release
       - uses: actions/upload-artifact@v2
