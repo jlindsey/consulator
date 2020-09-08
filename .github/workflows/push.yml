@@ -30,7 +30,7 @@ jobs:
       - name: Setup
         run: rustup component add clippy
       - name: Lint
-        run: cargo clippy
+        run: cargo check && cargo clippy
       - name: Run tests
         run: cargo test
       - name: Build
