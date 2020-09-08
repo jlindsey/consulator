@@ -9,7 +9,9 @@ jobs:
   create-release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/create-release@v1
+      - name: Create release
+        id: create-release
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -17,6 +19,8 @@ jobs:
           release_name: ${{ github.ref }}
           draft: false
           prerelease: false
+      - name: Set output
+        run: echo "::set-output name=upload_url::${{ steps.create-release.outputs.upload_url }}"
 
   lint-test-build:
     runs-on: ${{ matrix.os }}
