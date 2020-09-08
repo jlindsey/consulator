@@ -24,10 +24,10 @@ jobs:
             ~/.cargo/registry
             ~/.cargo/git
             target
-          key: v1-${{ runner.os }}-debug-${{ hashFiles('Cargo.lock') }}
+          key: v2-${{ runner.os }}-debug-${{ hashFiles('Cargo.lock') }}
           restore-keys: |
-            v1-${{ runner.os }}-debug
-            v1-${{ runner.os }}
+            v2-${{ runner.os }}-debug
+            v2-${{ runner.os }}
       - name: Setup
         run: rustup component add clippy
       - name: Lint
