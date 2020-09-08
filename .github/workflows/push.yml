@@ -28,7 +28,6 @@ jobs:
           restore-keys: |
             v1-${{ runner.os }}-debug
             v1-${{ runner.os }}
-            v1
       - name: Setup
         run: rustup component add clippy
       - name: Lint
