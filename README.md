@@ -3,9 +3,10 @@ Consulator
 
 [![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
+![Build](https://github.com/jlindsey/consulator/workflows/On%20Push/badge.svg)
+![Release](https://github.com/jlindsey/consulator/workflows/Release/badge.svg)
 [![GitHub release](https://img.shields.io/github/release/jlindsey/consulator.svg)](https://github.com/jlindsey/consulator/releases/)
 
-![Build](https://github.com/jlindsey/consulator/workflows/push/badge.svg)
 
 Simple CLI program to take a JSON input and map it into a Consul KV store such that a
 [consul-template][1] file or [Nomad template stanza][2] can access it via `tree`.
